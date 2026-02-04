@@ -18,7 +18,7 @@
             <asp:ListItem Value="4" Text="DIMEX"/>
         </asp:DropDownList>
     </div>
-        <%-- Validación del tipo de idenficación --%>
+       <%-- Validación del tipo de idenficación --%>
     <asp:RequiredFieldValidator ID="rfvTipoDocumento" runat="server" ErrorMessage="Es necesario seleccionar un tipo de identificación." ControlToValidate="ddlTipoDocumento" display="Dynamic"></asp:RequiredFieldValidator>
 
     <!-- Identificación -->
