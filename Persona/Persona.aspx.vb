@@ -9,10 +9,10 @@
         Dim persona As New Models.Persona()
 
         ' Validar los campos obligatorios
-        If txtFechaNacimiento.Text.Trim() = "" Then
-            lblResultado.Text = "Por favor, complete todos los campos obligatorios."
-            Return
-        End If
+        'If txtFechaNacimiento.Text.Trim() = "" Then
+        '    lblResultado.Text = "Por favor, complete todos los campos obligatorios."
+        '    Return
+        'End If
 
         persona.Nombre = txtNombre.Text.Trim()
         persona.Apellidos = txtApellidos.Text.Trim()
