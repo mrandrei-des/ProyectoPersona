@@ -65,4 +65,19 @@
 
     <asp:Label ID="lblResultado" runat="server" Text="" CssClass="control-label"></asp:Label>
 
+    <asp:Label ID="lblListaPersonas" runat="server" Text="Lista de Personas" CssClass="control-label"></asp:Label>
+    <asp:GridView ID="gvPersonas" runat="server" AutoGenerateColumns="False" DataKeyNames="IDPersona" DataSourceID="SqlDataSource1">
+        <Columns>
+            <asp:BoundField DataField="IDPersona" HeaderText="IDPersona" InsertVisible="False" ReadOnly="True" SortExpression="IDPersona" />
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
+            <asp:BoundField DataField="Apellidos" HeaderText="Apellidos" SortExpression="Apellidos" />
+            <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha Nacimiento" SortExpression="FechaNacimiento" />
+            <asp:BoundField DataField="CorreoElectronico" HeaderText="Correo Electronico" SortExpression="CorreoElectronico" />
+            <asp:BoundField DataField="TipoDocumento" HeaderText="Tipo Documento" SortExpression="TipoDocumento" />
+            <asp:BoundField DataField="Documento" HeaderText="Documento" SortExpression="Documento" />
+        </Columns>
+    </asp:GridView>
+
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:II-46ConnectionString %>" ProviderName="<%$ ConnectionStrings:II-46ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Personas]"></asp:SqlDataSource>
+
 </asp:Content>
