@@ -65,7 +65,7 @@
     <asp:Label ID="lblResultado" runat="server" Text="" CssClass="control-label"></asp:Label>
 
     <asp:Label ID="lblListaPersonas" runat="server" Text="Lista de Personas" CssClass="control-label"></asp:Label>
-    <asp:GridView ID="gvPersonas" runat="server" AutoGenerateColumns="False" DataKeyNames="IDPersona" DataSourceID="SqlDataSource1">
+    <asp:GridView ID="gvPersonas" runat="server" AutoGenerateColumns="False" DataKeyNames="IDPersona" DataSourceID="SqlDataSource1" OnRowDeleting="gvPersonas_RowDeleting">
         <Columns>
             <asp:BoundField DataField="IDPersona" HeaderText="IDPersona" InsertVisible="False" ReadOnly="True" SortExpression="IDPersona" />
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
@@ -74,6 +74,8 @@
             <asp:BoundField DataField="CorreoElectronico" HeaderText="Correo Electronico" SortExpression="CorreoElectronico" />
             <asp:BoundField DataField="TipoDocumento" HeaderText="Tipo Documento" SortExpression="TipoDocumento" />
             <asp:BoundField DataField="Documento" HeaderText="Documento" SortExpression="Documento" />
+            <asp:CommandField ShowDeleteButton="true"/>
+
         </Columns>
     </asp:GridView>
 

@@ -38,28 +38,28 @@ Public Class Persona
         If personaDB.CrearPersona(persona) Then
             SwalUtils.ShowSwal(Me, "¡Persona creada exitosamente!")
             gvPersonas.DataBind()
-            'Response.Redirect("Persona.aspx")
+            limpiarCampos()
         Else
             SwalUtils.ShowSwalError(Me, "Ha ocurrido un problema a la hora de crear la persona.")
         End If
 
 
         ' Insertar texto en un label desde el code behind
-        'If personaDB.CrearPersona(persona) Then
-        '    lblResultado.Text =
-        '    "<br/> Nombre: " & persona.Nombre & "<br/>" &
-        '    "Apellidos: " & persona.Apellidos & "<br/>" &
-        '    "Fecha Nacimiento: " & persona.FechaNacimiento & "<br/>" &
-        '    "Correo: " & persona.CorreoElectronico & "<br/>" &
-        '    "Documento: " & persona.TipoIdentificacion & " - " & persona.Identificacion
+        'lblResultado.Text = $"<br/> {persona.Resumen()}"
 
-        '    lblResultado.Text = $"<br/> {persona.Resumen()}"
-        '    lblResultado.Text = $"<br/> {persona.Nombre} {persona.Apellidos} ha sido ingresado con éxito."
+    End Sub
 
-        'Else
-        '    lblResultado.Text = $"<br/> No se logró ingresar a la persona."
-        'End If
+    Protected Sub gvPersonas_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
+        ' Cancela el evento eliminación predeterminada del gridview
+        e.Cancel = True
+        Dim personaDB As New PersonaDB
+        Dim idPersona As Integer = CInt(gvPersonas.DataKeys(e.RowIndex).Value)
 
-
+        If personaDB.EliminarPersona(idPersona) Then
+            SwalUtils.ShowSwal(Me, "¡La persona ha sido eliminada correctamente!")
+            gvPersonas.DataBind()
+        Else
+            SwalUtils.ShowSwalError(Me, "Ha ocurrido un problema a la hora de eliminar la persona.")
+        End If
     End Sub
 End Class
