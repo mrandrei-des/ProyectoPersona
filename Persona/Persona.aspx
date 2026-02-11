@@ -17,49 +17,48 @@
             <asp:ListItem Value="3" Text="Pasaporte"/>
             <asp:ListItem Value="4" Text="DIMEX"/>
         </asp:DropDownList>
+           <%-- Validación del tipo de idenficación --%>
+        <asp:RequiredFieldValidator ID="rfvTipoDocumento" runat="server" ErrorMessage="Es necesario seleccionar un tipo de identificación." ControlToValidate="ddlTipoDocumento" display="Dynamic"></asp:RequiredFieldValidator>
     </div>
-       <%-- Validación del tipo de idenficación --%>
-    <asp:RequiredFieldValidator ID="rfvTipoDocumento" runat="server" ErrorMessage="Es necesario seleccionar un tipo de identificación." ControlToValidate="ddlTipoDocumento" display="Dynamic"></asp:RequiredFieldValidator>
 
     <!-- Identificación -->
     <div class="form-group">
         <asp:Label ID="lblDocumento" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
-        <asp:TextBox ID="txtDocumento" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="txtDocumento" runat="server" CssClass="form-control" placeholder="101110111"></asp:TextBox>
+            <%-- Validación de la identificación --%>
+        <asp:RequiredFieldValidator ID="rfvIdentificacion" runat="server" ErrorMessage="Es necesario ingresar la identificación." ControlToValidate="txtDocumento" display="Dynamic"></asp:RequiredFieldValidator>
     </div>
-        <%-- Validación de la identificación --%>
-    <asp:RequiredFieldValidator ID="rfvIdentificacion" runat="server" ErrorMessage="Es necesario ingresar la identificación." ControlToValidate="txtDocumento" display="Dynamic"></asp:RequiredFieldValidator>
 
     <!-- Nombre -->
     <div class="form-group">
         <asp:Label ID="lblNombre" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
-        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="John"></asp:TextBox>
+            <%-- Validación del nombre --%>
+        <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ErrorMessage="Es necesario ingresar el nombre." ControlToValidate="txtNombre" display="Dynamic"></asp:RequiredFieldValidator>
     </div>
-        <%-- Validación del nombre --%>
-    <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ErrorMessage="Es necesario ingresar el nombre." ControlToValidate="txtNombre" display="Dynamic"></asp:RequiredFieldValidator>
     
     <!-- Apellidos -->    <div class="form-group">
         <asp:Label ID="lblApellidos" runat="server" Text="Apellidos:" CssClass="control-label"></asp:Label>
-        <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control" placeholder="Doe"></asp:TextBox>
+            <%-- Validación del apellido --%>
+        <asp:RequiredFieldValidator ID="rfvApellidos" runat="server" ErrorMessage="Es necesario ingresar sus apellidos." ControlToValidate="txtApellidos" display="Dynamic"></asp:RequiredFieldValidator>
     </div>
-        <%-- Validación del apellido --%>
-    <asp:RequiredFieldValidator ID="rfvApellidos" runat="server" ErrorMessage="Es necesario ingresar sus apellidos." ControlToValidate="txtApellidos" display="Dynamic"></asp:RequiredFieldValidator>
 
     <!-- Fecha de Nacimiento -->
     <div class="form-group">
         <asp:Label ID="lblFechaNacimiento" runat="server" Text="Fecha de Nacimiento:" CssClass="control-label"></asp:Label>
         <asp:TextBox ID="txtFechaNacimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+        <%-- Validación de la fecha de nacimiento --%>
+        <asp:RequiredFieldValidator ID="rfvFechaNacimiento" runat="server" ErrorMessage="Es necesario seleccionar una fecha de nacimiento." ControlToValidate="txtFechaNacimiento" display="Dynamic"></asp:RequiredFieldValidator>
     </div>
-    <%-- Validación de la fecha de nacimiento --%>
-    <asp:RequiredFieldValidator ID="rfvFechaNacimiento" runat="server" ErrorMessage="Es necesario seleccionar una fecha de nacimiento." ControlToValidate="txtFechaNacimiento" display="Dynamic"></asp:RequiredFieldValidator>
-
 
     <!-- Correo Electrónico -->
     <div class="form-group">
         <asp:Label ID="lblCorreo" runat="server" Text="Correo Electrónico:" CssClass="control-label"></asp:Label>
-        <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
+        <asp:TextBox ID="txtCorreoElectronico" runat="server" CssClass="form-control" TextMode="Email" placeholder="johndoe@correo.com"></asp:TextBox>
+            <%-- Validación de la fecha de nacimiento --%>
+        <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ErrorMessage="Es necesario ingresar el correo electrónico." ControlToValidate="txtCorreoElectronico" display="Dynamic"></asp:RequiredFieldValidator>
     </div>
-        <%-- Validación de la fecha de nacimiento --%>
-    <asp:RequiredFieldValidator ID="rfvCorreoElectronico" runat="server" ErrorMessage="Es necesario ingresar el correo electrónico." ControlToValidate="txtCorreoElectronico" display="Dynamic"></asp:RequiredFieldValidator>
 
     <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary my-2" OnClick="btnGuardar_Click"/>
 
