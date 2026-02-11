@@ -21,6 +21,7 @@ Public Class Persona
     Protected Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
         Dim persona As New Models.Persona()
         Dim personaDB As New PersonaDB
+        Dim errorMessage As String = ""
 
         ' Validar los campos obligatorios
         'If txtFechaNacimiento.Text.Trim() = "" Then
@@ -35,31 +36,31 @@ Public Class Persona
         persona.TipoIdentificacion = ddlTipoDocumento.SelectedItem.Value
         persona.Identificacion = txtDocumento.Text
 
-        If personaDB.CrearPersona(persona) Then
+        If personaDB.CrearPersona(persona, errorMessage) Then
             SwalUtils.ShowSwal(Me, "¡Persona creada exitosamente!")
             gvPersonas.DataBind()
             limpiarCampos()
         Else
-            SwalUtils.ShowSwalError(Me, "Ha ocurrido un problema a la hora de crear la persona.")
+            SwalUtils.ShowSwalError(Me, errorMessage)
         End If
-
 
         ' Insertar texto en un label desde el code behind
         'lblResultado.Text = $"<br/> {persona.Resumen()}"
-
     End Sub
 
     Protected Sub gvPersonas_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
         ' Cancela el evento eliminación predeterminada del gridview
         e.Cancel = True
         Dim personaDB As New PersonaDB
+        Dim errorMessage As String = ""
+
         Dim idPersona As Integer = CInt(gvPersonas.DataKeys(e.RowIndex).Value)
 
-        If personaDB.EliminarPersona(idPersona) Then
+        If personaDB.EliminarPersona(idPersona, errorMessage) Then
             SwalUtils.ShowSwal(Me, "¡La persona ha sido eliminada correctamente!")
             gvPersonas.DataBind()
         Else
-            SwalUtils.ShowSwalError(Me, "Ha ocurrido un problema a la hora de eliminar la persona.")
+            SwalUtils.ShowSwalError(Me, errorMessage)
         End If
     End Sub
 End Class

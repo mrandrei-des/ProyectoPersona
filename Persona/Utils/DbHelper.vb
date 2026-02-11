@@ -16,7 +16,7 @@ Public Class DbHelper
     End Function
 
     'Método para ejecutar un comando SQL (INSERT, UPDATE, DELETE)
-    Public Function ExecuteNonQuery(query As String, parameters As Dictionary(Of String, Object)) As Boolean
+    Public Function ExecuteNonQuery(query As String, parameters As Dictionary(Of String, Object), ByRef errorMessage As String) As Boolean
         If String.IsNullOrWhiteSpace(query) Then
             Throw New ArgumentException("La consulta no puede estar vacía.")
         End If
@@ -29,14 +29,13 @@ Public Class DbHelper
                     ' Agrega cada uno de los parámetros que contenga el diccionario en el parameters del SQL Command
                     For Each param In parameters
                         cmd.Parameters.AddWithValue(param.Key, param.Value)
-
                     Next
-
                 End If
                 Try
                     cmd.ExecuteNonQuery()
                     Return True
                 Catch ex As Exception
+                    errorMessage = "Error al ejecutar la consulta: [" & ex.Message & "]"
                     Return False
                 End Try
             End Using
