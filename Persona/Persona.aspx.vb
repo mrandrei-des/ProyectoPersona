@@ -63,4 +63,30 @@ Public Class Persona
             SwalUtils.ShowSwalError(Me, errorMessage)
         End If
     End Sub
+
+    Protected Sub gvPersonas_RowEditing(sender As Object, e As GridViewEditEventArgs)
+        e.Cancel = True
+        Dim personaDB As New PersonaDB
+        Dim errorMessage As String = ""
+        Dim idPersona As Integer = CInt(gvPersonas.DataKeys(e.NewEditIndex).Value)
+
+    End Sub
+
+    Protected Sub gvPersonas_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Dim persona As New Models.Persona()
+        Dim errorMessage As String = ""
+        Dim selectedRow As GridViewRow = gvPersonas.SelectedRow
+
+        Dim idPersona = selectedRow.Cells(0).Text
+        persona = db.ConsultarPersona(idPersona, errorMessage)
+
+        persona.Nombre = HttpUtility.HtmlDecode(selectedRow.Cells(1).Text)
+        persona.Apellidos = HttpUtility.HtmlDecode(selectedRow.Cells(2).Text)
+        persona.FechaNacimiento = selectedRow.Cells(3).Text
+        persona.CorreoElectronico = selectedRow.Cells(4).Text
+        persona.TipoIdentificacion = selectedRow.Cells(5).Text
+        persona.Identificacion = selectedRow.Cells(6).Text
+        ddlTipoDocumento.SelectedValue = selectedRow.Cells(5).Text
+
+    End Sub
 End Class

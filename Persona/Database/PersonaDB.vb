@@ -1,4 +1,5 @@
-﻿Imports System.Security.Policy
+﻿Imports System.ComponentModel.Design
+Imports System.Security.Policy
 Imports Persona.Models
 
 Public Class PersonaDB
@@ -29,5 +30,14 @@ Public Class PersonaDB
 
         Return db.ExecuteNonQuery(query, parameters, errorMessage)
 
+    End Function
+
+    Public Function ConsultarPersona(idPersona As Integer, ByRef errorMessage As String) As Models.Persona
+        Dim query As String = "SELECT * FROM PERSONAS WHERE IDPersona = @IDPersona"
+        Dim parameters As New Dictionary(Of String, Object) From {
+            {"@IDPersona", idPersona}
+        }
+
+        'Return db.ExecuteNonQuery(query, parameters, errorMessage)
     End Function
 End Class

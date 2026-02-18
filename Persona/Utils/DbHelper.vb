@@ -41,4 +41,8 @@ Public Class DbHelper
             End Using
         End Using
     End Function
+
+    'Public Function ExecuteNonQuery(query As String, parameters As Dictionary(Of String, Object), ByRef errorMessage As String) As Boolean
+
+    'End Function
 End Class

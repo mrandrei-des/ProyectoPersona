@@ -65,17 +65,21 @@
     <asp:Label ID="lblResultado" runat="server" Text="" CssClass="control-label"></asp:Label>
 
     <asp:Label ID="lblListaPersonas" runat="server" Text="Lista de Personas" CssClass="control-label"></asp:Label>
-    <asp:GridView ID="gvPersonas" runat="server" AutoGenerateColumns="False" DataKeyNames="IDPersona" DataSourceID="SqlDataSource1" OnRowDeleting="gvPersonas_RowDeleting">
+    <asp:GridView ID="gvPersonas" runat="server" AutoGenerateColumns="False" DataKeyNames="IDPersona" DataSourceID="SqlDataSource1" OnRowDeleting="gvPersonas_RowDeleting" OnRowEditing="gvPersonas_RowEditing" OnSelectedIndexChanged="gvPersonas_SelectedIndexChanged" CssClass="table">
         <Columns>
             <asp:BoundField DataField="IDPersona" HeaderText="IDPersona" InsertVisible="False" ReadOnly="True" SortExpression="IDPersona" />
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
             <asp:BoundField DataField="Apellidos" HeaderText="Apellidos" SortExpression="Apellidos" />
             <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha Nacimiento" SortExpression="FechaNacimiento" />
             <asp:BoundField DataField="CorreoElectronico" HeaderText="Correo Electronico" SortExpression="CorreoElectronico" />
-            <asp:BoundField DataField="TipoDocumento" HeaderText="Tipo Documento" SortExpression="TipoDocumento" />
+            <asp:BoundField DataField="TipoDocumento" HeaderText="Tipo Documento" SortExpression="TipoDocumento"/>
             <asp:BoundField DataField="Documento" HeaderText="Documento" SortExpression="Documento" />
-            <asp:CommandField ShowDeleteButton="true"/>
 
+            <%-- Para agregar un icono, el HTML del icono debe ir dentro del Delete/Edit Text sustituyendo las comillas dobles por simples--%>
+            <asp:CommandField ShowDeleteButton="true" ControlStyle-CssClass="btn btn-danger" DeleteText="<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='icon icon-tabler icons-tabler-outline icon-tabler-trash'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><path d='M4 7l16 0' /><path d='M10 11l0 6' /><path d='M14 11l0 6' /><path d='M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12' /><path d='M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3' /></svg>"/>
+            <asp:CommandField ShowEditButton="true" ControlStyle-CssClass="btn btn-warning" EditText ="<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='icon icon-tabler icons-tabler-outline icon-tabler-pencil'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><path d='M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4' /><path d='M13.5 6.5l4 4' /></svg>"/>
+            <%-- Botón para seleccionar toda la fila de una tabla para luego enviar la información en un evento --%>
+            <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="btn btn-warning" SelectText="Seleccionar fila" />
         </Columns>
     </asp:GridView>
 
